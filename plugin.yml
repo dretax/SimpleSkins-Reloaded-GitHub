@@ -1,0 +1,58 @@
+name: SimpleSkins
+main: dretax.simpleskins.SimpleSkins
+version: 1.3
+authors: [DreTaX, DerPavlov]
+depend: [Spout]
+soft-depend: [Citizens]
+permissions:
+  simpleskins.*:
+    default: op
+    children:
+      simpleskins.playerskin.any: true
+      simpleskins.playercape.any: true
+      simpleskins.saveskin.any: true
+      simpleskins.savecape.any: true
+      simpleskins.npcskin: true
+      simpleskins.npccape: true
+      simpleskins.import: true
+  simpleskins.playerskin.any:
+    default: false
+  simpleskins.playerskin.self:
+    default: false
+  simpleskins.playercape.any:
+    default: false
+  simpleskins.playercape.self:
+    default: false   
+  simpleskins.saveskin.any:
+    default: false
+  simpleskins.saveskin.self:
+    default: false
+  simpleskins.savecape.any:
+    default: false
+  simpleskins.savecape.self:
+    default: false
+  simpleskins.npcskin:
+    default: false
+  simpleskins.npccape:
+    default: false
+  simpleskins.import:
+    default: false
+commands:
+  ssimport:
+    description: Imports other plugin data.
+  playerskin:
+    description: Changes a Player Skin.
+  playercape:
+    description: Changes a Player Cape.
+  saveskin:
+    description: Changes a Saved Skin.
+  savecape:
+    description: Changes a Saved Cape.
+  npcskin:
+    description: Changes a Citizen Skin.
+  npccape:
+    description: Changes a Citizen Cape.
+  groupskin:
+    description: Depreciated. Brings up help.
+  groupcape:
+    description: Depreciated. Brings up help.
