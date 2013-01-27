@@ -265,8 +265,8 @@ public class SimpleSkins extends JavaPlugin
       //check version number
       if (numbers.size() >= 3)
       {
-       // version number has 3 digits version bigger than 2.0.6
-       if(numbers.get(0) == 2 && numbers.get(1) == 0  && numbers.get(2) >= 6){
+       // version number has 3 digits version bigger than 2.0.7
+       if(numbers.get(0) == 2 && numbers.get(1) == 0  && numbers.get(2) >= 7){
         return numbers.get(0);
        }
       }
