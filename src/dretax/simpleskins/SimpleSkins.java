@@ -215,10 +215,16 @@ public class SimpleSkins extends JavaPlugin {
 
 	public void updateLiveCitizen(int id) {
 		SpoutPlayer sp = null;
-		if (this._citizensVersion == 2) {
-			CitizensTwoSupport ctwo = new CitizensTwoSupport(id);
-			sp = ctwo._sp;
-		}
+		// Get the NPC as a Spout Player
+	    
+	    if (this._citizensVersion == 1) {
+	      CitizensOneSupport cone = new CitizensOneSupport(id);
+	      sp = cone._sp;
+	    }
+	    else if (this._citizensVersion == 2) {
+	      CitizensTwoSupport ctwo = new CitizensTwoSupport(id);
+	      sp = ctwo._sp;
+	    }
 
 		if (sp != null) {
 			setSkin(sp, (String) this._citizenSkins.get(Integer.valueOf(id)));
