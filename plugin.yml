@@ -1,6 +1,6 @@
 name: SimpleSkins
 main: dretax.simpleskins.SimpleSkins
-version: 1.6
+version: 1.8
 authors: [DreTaX, DerPavlov]
 depend: [Spout]
 soft-depend: [Citizens]

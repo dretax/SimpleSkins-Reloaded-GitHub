@@ -99,30 +99,23 @@ public class SimpleSkins extends JavaPlugin {
 								SimpleSkins.this.updateLivePermissionPlayer(sp);
 								SimpleSkins.this.updateLivePlayer(sp);
 
-								if ((SimpleSkins.this._playerSkins
-										.containsKey(name))
-										&& (((String) SimpleSkins.this._playerSkins
-												.get(name)).isEmpty())
-										&& (SimpleSkins.this._canClear)) {
-									SimpleSkins.this._playerSkins.remove(name);
-								}
-								if ((SimpleSkins.this._playerCapes
-										.containsKey(name))
-										&& (((String) SimpleSkins.this._playerCapes
-												.get(name)).isEmpty())
+                                if ((SimpleSkins.this._playerSkins.containsKey(name))
+                                        && ((SimpleSkins.this._playerSkins.get(name)).isEmpty())
+                                        && (SimpleSkins.this._canClear)) {
+                                    SimpleSkins.this._playerSkins.remove(name);
+                                        }
+								if ((SimpleSkins.this._playerCapes.containsKey(name))
+										&& ((SimpleSkins.this._playerCapes.get(name)).isEmpty())
 										&& (SimpleSkins.this._canClear)) {
 									SimpleSkins.this._playerCapes.remove(name);
 								}
 							}
 
 							if (SimpleSkins.this._citizensVersion > 0) {
-								Set<Integer> ids = new HashSet<Integer>(
-										SimpleSkins.this._citizenSkins.keySet());
-								ids.addAll(SimpleSkins.this._citizenCapes
-										.keySet());
+								Set<Integer> ids = new HashSet<Integer>(SimpleSkins.this._citizenSkins.keySet());
+								ids.addAll(SimpleSkins.this._citizenCapes.keySet());
 								for (Integer id : ids) {
-									SimpleSkins.this.updateLiveCitizen(id
-											.intValue());
+                                    SimpleSkins.this.updateLiveCitizen(id.intValue());
 								}
 							}
 							SimpleSkins.this._canClear = false;
@@ -141,7 +134,7 @@ public class SimpleSkins extends JavaPlugin {
 		Validate.notNull(sp, "Player cannot be null!");
 
 		if ((!isValidURL(skin)) && (this._savedSkins.containsKey(skin))) {
-			skin = (String) this._savedSkins.get(skin);
+			skin = this._savedSkins.get(skin);
 		}
 
 		if (isValidURL(skin)) {
@@ -157,7 +150,7 @@ public class SimpleSkins extends JavaPlugin {
 		Validate.notNull(sp, "Player cannot be null!");
 
 		if ((!isValidURL(cape)) && (this._savedCapes.containsKey(cape))) {
-			cape = (String) this._savedCapes.get(cape);
+			cape = this._savedCapes.get(cape);
 		}
 
 		if (isValidURL(cape)) {
@@ -173,10 +166,10 @@ public class SimpleSkins extends JavaPlugin {
 		if (sp != null) {
 			String name = sp.getName().toLowerCase();
 			if (this._playerSkins.containsKey(name)) {
-				setSkin(sp, (String) this._playerSkins.get(name));
+				setSkin(sp, this._playerSkins.get(name));
 			}
 			if (this._playerCapes.containsKey(name))
-				setCape(sp, (String) this._playerCapes.get(name));
+				setCape(sp, this._playerCapes.get(name));
 		}
 	}
 
@@ -185,7 +178,7 @@ public class SimpleSkins extends JavaPlugin {
 			if (!this._savedSkins.isEmpty()) {
 				for (String pname : this._savedSkins.keySet()) {
 					if (hasSavedSkinPermission(sp, pname)) {
-						setSkin(sp, (String) this._savedSkins.get(pname));
+						setSkin(sp, this._savedSkins.get(pname));
 						break;
 					}
 				}
@@ -194,7 +187,7 @@ public class SimpleSkins extends JavaPlugin {
 			if (!this._savedCapes.isEmpty())
 				for (String pname : this._savedCapes.keySet())
 					if (hasSavedCapePermission(sp, pname)) {
-						setCape(sp, (String) this._savedCapes.get(pname));
+						setCape(sp, this._savedCapes.get(pname));
 						break;
 					}
 		}
@@ -205,10 +198,10 @@ public class SimpleSkins extends JavaPlugin {
 			pname = pname.toLowerCase();
 			for (SpoutPlayer sp : SpoutManager.getOnlinePlayers()) {
 				if (hasSavedSkinPermission(sp, pname)) {
-					setSkin(sp, (String) this._savedSkins.get(pname));
+					setSkin(sp, this._savedSkins.get(pname));
 				}
 				if (hasSavedCapePermission(sp, pname))
-					setCape(sp, (String) this._savedCapes.get(pname));
+					setCape(sp, this._savedCapes.get(pname));
 			}
 		}
 	}
@@ -227,22 +220,20 @@ public class SimpleSkins extends JavaPlugin {
 	    }
 
 		if (sp != null) {
-			setSkin(sp, (String) this._citizenSkins.get(Integer.valueOf(id)));
-			setCape(sp, (String) this._citizenCapes.get(Integer.valueOf(id)));
+			setSkin(sp, this._citizenSkins.get(id));
+			setCape(sp, this._citizenCapes.get(id));
 		}
 	}
 
 	public boolean hasSavedSkinPermission(SpoutPlayer sp, String perm) {
-		if ((sp.hasPermission(this._savedSkinPerm + perm))
-				&& ((!sp.hasPermission("*")) || (!sp.isOp()))) {
+		if ((sp.hasPermission(this._savedSkinPerm + perm)) && ((!sp.hasPermission("*")) || (!sp.isOp()))) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean hasSavedCapePermission(SpoutPlayer sp, String perm) {
-		if ((sp.hasPermission(this._savedCapePerm + perm))
-				&& ((!sp.hasPermission("*")) || (!sp.isOp()))) {
+		if ((sp.hasPermission(this._savedCapePerm + perm)) && ((!sp.hasPermission("*")) || (!sp.isOp()))) {
 			return true;
 		}
 		return false;
@@ -260,26 +251,24 @@ public class SimpleSkins extends JavaPlugin {
 	public void loadCitizensSupport() {
 		this._citizensVersion = getCitizensVersion();
 
-		if (this._citizensVersion == 0)
-			sendConsoleMessage(ChatColor.GREEN
-					+ "No Citizens Plugin found. Citizens Support is offline for now.");
+		if (this._citizensVersion == 0)  {
+			sendConsoleMessage(ChatColor.GREEN + "No Citizens Plugin found. Citizens Support is offline for now.");
+            sendConsoleMessage(ChatColor.GREEN + "If You have Citizens, then don't worry, just join the srv.");
+        }
 
 		else if (this._citizensVersion == 1) {
-			sendConsoleMessage(ChatColor.GREEN
-					+ "Citizens v1.2.3 Support Enabled!");
+			sendConsoleMessage(ChatColor.GREEN + "Citizens v1.2.3 Support Enabled!");
 		}
 
-		else if (this._citizensVersion == 2)
-			sendConsoleMessage(ChatColor.GREEN
-					+ "Citizens v2.0.X Support Enabled!");
-
+		else if (this._citizensVersion == 2)   {
+			sendConsoleMessage(ChatColor.GREEN + "Citizens v2.0.X Support Enabled!");
+        }
 	}
 
 	public int getCitizensVersion() {
 		if (checkDependency("Citizens")) {
 			ArrayList<Integer> numbers = new ArrayList<Integer>();
-			String ver = this._pm.getPlugin("Citizens").getDescription()
-					.getVersion();
+			String ver = this._pm.getPlugin("Citizens").getDescription().getVersion();
 			// find the first number
 			Pattern p = Pattern.compile("[0-9]+");
 			Matcher m = p.matcher(ver);
@@ -288,9 +277,8 @@ public class SimpleSkins extends JavaPlugin {
 			}
 			// check version number
 			if (numbers.size() >= 3) {
-				// version number has 3 digits version bigger than 2.0.7
-				if (numbers.get(0) == 2 && numbers.get(1) == 0
-						&& numbers.get(2) >= 7) {
+				// version number has 3 digits version bigger than 2.0.6
+				if (numbers.get(0) == 2 && numbers.get(1) == 0 && numbers.get(2) >= 6) {
 					return numbers.get(0);
 				}
 			}
@@ -310,7 +298,7 @@ public class SimpleSkins extends JavaPlugin {
 					return numbers.get(0);
 				}
 			}
-			if (ver.equals("1.2.3")) {
+			if (ver.equals("1.2.4")) {
 				set_citizensOne(new CitizensOneSupport());
 				return 1;
 			}

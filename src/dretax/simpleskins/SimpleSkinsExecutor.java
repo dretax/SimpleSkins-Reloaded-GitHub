@@ -188,24 +188,24 @@ public class SimpleSkinsExecutor
     if (type.equals("skin"))
     {
       if ((url == null) || (url.isEmpty())) {
-        this._SimpleSkins._citizenSkins.put(Integer.valueOf(id), "");
+        this._SimpleSkins._citizenSkins.put(id, "");
         sendMessage(sender, "NPC " + Integer.toString(id) + " has their default skin back.", true);
       }
       else
       {
-        this._SimpleSkins._citizenSkins.put(Integer.valueOf(id), url);
+        this._SimpleSkins._citizenSkins.put(id, url);
         sendMessage(sender, "NPC " + Integer.toString(id) + "'s skin has been set and saved.", true);
       }
     }
     else if (type.equals("cape"))
     {
       if ((url == null) || (url.isEmpty())) {
-        this._SimpleSkins._citizenCapes.put(Integer.valueOf(id), "");
+        this._SimpleSkins._citizenCapes.put(id, "");
         sendMessage(sender, "NPC " + Integer.toString(id) + " has their default cape back.", true);
       }
       else
       {
-        this._SimpleSkins._citizenCapes.put(Integer.valueOf(id), url);
+        this._SimpleSkins._citizenCapes.put(id, url);
         sendMessage(sender, "NPC " + Integer.toString(id) + "'s cape has been set and saved.", true);
       }
     }

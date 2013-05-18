@@ -72,7 +72,7 @@ public class SimpleSkinsFileManager
           else if (type.equalsIgnoreCase("Citizens")) {
             try {
               int id = Integer.parseInt(name);
-              this._SimpleSkins._citizenSkins.put(Integer.valueOf(id), url);
+              this._SimpleSkins._citizenSkins.put(id, url);
             }
             catch (NumberFormatException nfe) {
               this._SimpleSkins._log.info("Invalid Citizen ID: " + name + " - Skipping.");
@@ -106,7 +106,7 @@ public class SimpleSkinsFileManager
           else if (type.equalsIgnoreCase("Citizens")) {
             try {
               int id = Integer.parseInt(name);
-              this._SimpleSkins._citizenCapes.put(Integer.valueOf(id), url);
+              this._SimpleSkins._citizenCapes.put(id, url);
             }
             catch (NumberFormatException nfe) {
               this._SimpleSkins._log.info("Invalid Citizen ID: " + name + " - Skipping.");
@@ -133,42 +133,42 @@ public class SimpleSkinsFileManager
   private void saveData()
   {
     for (String name : this._SimpleSkins._playerSkins.keySet()) {
-      if (!((String)this._SimpleSkins._playerSkins.get(name)).isEmpty())
+      if (!this._SimpleSkins._playerSkins.get(name).isEmpty())
         this._skinYAML.set("Players." + name, this._SimpleSkins._playerSkins.get(name));
       else {
         this._skinYAML.set("Players." + name, null);
       }
     }
     for (String name : this._SimpleSkins._playerCapes.keySet()) {
-      if (!((String)this._SimpleSkins._playerCapes.get(name)).isEmpty())
+      if (!(this._SimpleSkins._playerCapes.get(name)).isEmpty())
         this._capeYAML.set("Players." + name, this._SimpleSkins._playerCapes.get(name));
       else {
         this._capeYAML.set("Players." + name, null);
       }
     }
     for (String name : this._SimpleSkins._savedSkins.keySet()) {
-      if (!((String)this._SimpleSkins._savedSkins.get(name)).isEmpty())
+      if (!(this._SimpleSkins._savedSkins.get(name)).isEmpty())
         this._skinYAML.set("SavedURLs." + name, this._SimpleSkins._savedSkins.get(name));
       else {
         this._skinYAML.set("SavedURLs." + name, null);
       }
     }
     for (String name : this._SimpleSkins._savedCapes.keySet()) {
-      if (!((String)this._SimpleSkins._savedCapes.get(name)).isEmpty())
+      if (!(this._SimpleSkins._savedCapes.get(name)).isEmpty())
         this._capeYAML.set("SavedURLs." + name, this._SimpleSkins._savedCapes.get(name));
       else {
         this._capeYAML.set("SavedURLs." + name, null);
       }
     }
     for (Integer id : this._SimpleSkins._citizenSkins.keySet()) {
-      if (!((String)this._SimpleSkins._citizenSkins.get(id)).isEmpty())
+      if (!(this._SimpleSkins._citizenSkins.get(id)).isEmpty())
         this._skinYAML.set("Citizens." + String.valueOf(id), this._SimpleSkins._citizenSkins.get(id));
       else {
         this._skinYAML.set("Citizens." + String.valueOf(id), null);
       }
     }
     for (Integer id : this._SimpleSkins._citizenCapes.keySet()) {
-      if (!((String)this._SimpleSkins._citizenCapes.get(id)).isEmpty())
+      if (!(this._SimpleSkins._citizenCapes.get(id)).isEmpty())
         this._capeYAML.set("Citizens." + String.valueOf(id), this._SimpleSkins._citizenCapes.get(id));
       else
         this._capeYAML.set("Citizens." + String.valueOf(id), null);
@@ -235,11 +235,11 @@ public class SimpleSkinsFileManager
           }
           if (npcID >= 0) {
             if ((skinurl != null) && (!skinurl.isEmpty())) {
-              this._SimpleSkins._citizenSkins.put(Integer.valueOf(npcID), skinurl);
+              this._SimpleSkins._citizenSkins.put(npcID, skinurl);
               skinCount++;
             }
             if ((capeurl != null) && (!capeurl.isEmpty())) {
-              this._SimpleSkins._citizenCapes.put(Integer.valueOf(npcID), capeurl);
+              this._SimpleSkins._citizenCapes.put(npcID, capeurl);
               capeCount++;
             }
             this._SimpleSkins.updateLiveCitizen(npcID);
